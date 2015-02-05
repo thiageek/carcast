@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.wendelyleal.fordapplink"
+        version="0.7.0">
+
+  <name>Ford AppLink</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/fordapplink.js" target="js/fordapplink.js"/>
+
+  <js-module src="www/fordapplink.js" name="fordapplink">
+    <clobbers target="fordapplink" />
+  </js-module>
+
+  <platform name="ios">
+    
+    <config-file target="config.xml" parent="/widget">
+      <feature name="FordAppLink">
+        <param name="ios-package" value="HWPFordappLink" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/HWPFordAppLink.h" target-dir="FordAppLinkPlugin"/>
+    <source-file src="src/ios/HWPFordAppLink.m" target-dir="FordAppLinkPlugin"/>
+  </platform>
+
+  <platform name="browser">
+      <config-file target="config.xml" parent="/*">
+          <feature name="Device">
+              <param name="browser-package" value="Device" />
+          </feature>
+      </config-file>
+
+      <js-module src="src/browser/FordAppLink.js" name="FordAppLinkPlugin">
+          <runs />
+      </js-module>
+  </platform>
+
+</plugin>
