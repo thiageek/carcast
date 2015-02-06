@@ -4,11 +4,46 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{audio.name}}">
+<!--ion-view view-title="{{audio.name}}">
   <ion-content class="padding">
     <img ng-src="{{audio.face}}" style="width: 64px; height: 64px">
     <p>
-      {{audio.lastText}}
+      {{audio.title}}
     </p>
+  </ion-content>
+</ion-view-->
+<ion-view view-title="{{audio.author}}">
+  <ion-content class="padding">
+    <div class="list-card">
+      <div class="item item-avatar row">
+        <div class="col">
+          <center>
+            <div class="button button-icon icon ion-headphone"></div>
+            <p>{{audio.category}}</p>
+          </center>
+        </div>
+        <div class="col col-75">
+          <h2>{{audio.title}}</h2>
+          <h3>{{audio.subtitle}}</h3>
+          <p>{{audio.author}}</p>
+        </div>
+      </div>
+      <div class="item item-image">
+        <img src="{{audio.image}}">
+      </div>
+      <div class="item row">
+        <button class="col button icon ion-ios7-skipbackward"></button>
+        <button class="col button icon ion-ios7-rewind"></button>
+        <button class="col button icon ion-play"></button>
+        <button class="col button icon ion-star"></button>
+        <button class="col button icon ion-ios7-fastforward"></button>
+        <button class="col button icon ion-ios7-skipforward"></button>
+      </div>
+      <div class="range">
+        <i class="icon ion-volume-low"></i>
+        <input type="range" name="volume">
+        <i class="icon ion-volume-high"></i>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
