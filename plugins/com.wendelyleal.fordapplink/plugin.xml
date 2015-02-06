@@ -18,25 +18,15 @@
   <platform name="ios">
     
     <config-file target="config.xml" parent="/widget">
-      <feature name="FordAppLink">
-        <param name="ios-package" value="HWPFordappLink" />
+      <feature name="fordapplink">
+        <param name="ios-package" value="fordapplink" />
+        <param name="onload" value="true" />
       </feature>
     </config-file>
 
-    <header-file src="src/ios/HWPFordAppLink.h" target-dir="FordAppLinkPlugin"/>
-    <source-file src="src/ios/HWPFordAppLink.m" target-dir="FordAppLinkPlugin"/>
-  </platform>
+    <header-file src="src/ios/FordAppLink.h" target-dir="FordAppLink"/>
+    <source-file src="src/ios/FordAppLink.m" target-dir="FordAppLink"/>
 
-  <platform name="browser">
-      <config-file target="config.xml" parent="/*">
-          <feature name="Device">
-              <param name="browser-package" value="Device" />
-          </feature>
-      </config-file>
-
-      <js-module src="src/browser/FordAppLink.js" name="FordAppLinkPlugin">
-          <runs />
-      </js-module>
   </platform>
 
 </plugin>
