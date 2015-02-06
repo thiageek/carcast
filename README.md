@@ -17,3 +17,7 @@
 ## Documentation
 
 * http://cordova.apache.org/docs/en/edge/guide_platforms_ios_plugin.md.html#iOS%20Plugins
+
+## Inbox
+
+	Plugins with long-running requests, background activity such as media playback, listeners, or that maintain internal state should implement the onReset method to clean up those activities. The method runs when the UIWebView navigates to a new page or refreshes, which reloads the JavaScript.
