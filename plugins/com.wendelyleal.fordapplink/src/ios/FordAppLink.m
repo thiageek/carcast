@@ -6,8 +6,8 @@
 
 // IDs used in the settings bundle
 #define PREFS_FIRST_RUN @"firstRun"
-// #define PREFS_PROTOCOL @"iap"
-#define PREFS_PROTOCOL @"tcps"
+ #define PREFS_PROTOCOL @"iap"
+//#define PREFS_PROTOCOL @"tcps"
 #define PREFS_IPADDRESS @"127.0.0.1"
 #define PREFS_PORT @"12345"
 
@@ -38,9 +38,8 @@
     //Set to match settings.bundle defaults
     // if (![[prefs objectForKey:PREFS_FIRST_RUN] isEqualToString:@"False"]) {
     [prefs setObject:@"False" forKey:PREFS_FIRST_RUN];
-    [prefs setObject:@"tcps" forK
-                  ey:PREFS_PROTOCOL];
-//    [prefs setObject:@"iap" forKey:PREFS_PROTOCOL];
+//    [prefs setObject:@"tcps" forKey:PREFS_PROTOCOL];
+    [prefs setObject:@"iap" forKey:PREFS_PROTOCOL];
     [prefs setObject:@"127.0.0.1" forKey:PREFS_IPADDRESS];
     [prefs setObject:@"12345" forKey:PREFS_PORT];
     // }
