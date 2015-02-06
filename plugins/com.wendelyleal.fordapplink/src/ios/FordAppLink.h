@@ -1,6 +1,6 @@
 #import <Cordova/CDV.h>
 
-@interface HWPHello : CDVPlugin
+@interface FordAppLink : CDVPlugin
 
 - (void) greet:(CDVInvokedUrlCommand*)command;
 
