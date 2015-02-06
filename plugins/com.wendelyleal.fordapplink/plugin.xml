@@ -18,8 +18,8 @@
   <platform name="ios">
     
     <config-file target="config.xml" parent="/widget">
-      <feature name="fordapplink">
-        <param name="ios-package" value="fordapplink" />
+      <feature name="FordAppLink">
+        <param name="ios-package" value="FordAppLink" />
         <param name="onload" value="true" />
       </feature>
     </config-file>

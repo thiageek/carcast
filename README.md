@@ -7,7 +7,7 @@
 * Install Ford AppLink SDK
 * Install Ford AppLink Emulator (ALE)
 	* Configure the project to run on 127.0.0.1 with the port 12345. No need to update "IDs used in the settings bundle" section
-	* Seems like PREFS_PROTOCOL has to be tcps
+	* Seems like PREFS_PROTOCOL has to be tcps for offline testing and iap for iOS cable test on SYNC TDK 3.0
 
 
 ## Debug

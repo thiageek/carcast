@@ -23,7 +23,7 @@
                     ],
                     "/widget": [
                         {
-                            "xml": "<feature name=\"FordAppLink\"><param name=\"ios-package\" value=\"FordAppLink\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"fordapplink\"><param name=\"ios-package\" value=\"fordapplink\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]

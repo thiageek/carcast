@@ -6,23 +6,24 @@
 
 // IDs used in the settings bundle
 #define PREFS_FIRST_RUN @"firstRun"
-#define PREFS_PROTOCOL @"protocol"
-#define PREFS_IPADDRESS @"ipaddress"
-#define PREFS_PORT @"port"
+// #define PREFS_PROTOCOL @"iap"
+#define PREFS_PROTOCOL @"tcps"
+#define PREFS_IPADDRESS @"127.0.0.1"
+#define PREFS_PORT @"12345"
 
 @implementation FordAppLink
 
 - (void)greet:(CDVInvokedUrlCommand*)command
 {
-
+    
     NSString* callbackId = [command callbackId];
     NSString* name = [[command arguments] objectAtIndex:0];
     NSString* msg = [NSString stringWithFormat: @"FordAppLink, %@", name];
-
+    
     CDVPluginResult* result = [CDVPluginResult
                                resultWithStatus:CDVCommandStatus_OK
                                messageAsString:msg];
-
+    
     [self success:result callbackId:callbackId];
 }
 
@@ -35,33 +36,41 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     //Set to match settings.bundle defaults
-    if (![[prefs objectForKey:PREFS_FIRST_RUN] isEqualToString:@"False"]) {
-        [prefs setObject:@"False" forKey:PREFS_FIRST_RUN];
-        [prefs setObject:@"iap" forKey:PREFS_PROTOCOL];
-        [prefs setObject:@"127.0.0.1" forKey:PREFS_IPADDRESS];
-        [prefs setObject:@"12345" forKey:PREFS_PORT];
-    }
+    // if (![[prefs objectForKey:PREFS_FIRST_RUN] isEqualToString:@"False"]) {
+    [prefs setObject:@"False" forKey:PREFS_FIRST_RUN];
+    [prefs setObject:@"tcps" forK
+                  ey:PREFS_PROTOCOL];
+//    [prefs setObject:@"iap" forKey:PREFS_PROTOCOL];
+    [prefs setObject:@"127.0.0.1" forKey:PREFS_IPADDRESS];
+    [prefs setObject:@"12345" forKey:PREFS_PORT];
+    // }
     [prefs synchronize];
 }
 
 #pragma mark AppLink Proxy
 
--(void) setupProxy {
+-(void) setupProxy:(CDVInvokedUrlCommand*)command {
     [FMCDebugTool logInfo:@"setupProxy"];
     
     [self savePreferences];
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([[prefs objectForKey:PREFS_PROTOCOL] isEqualToString:@"tcpl"]) {
+        [FMCDebugTool logInfo:@"setupProxy: tcpl"];
         proxy = [[FMCSyncProxyFactory buildSyncProxyWithListener: self
                                                     tcpIPAddress: nil
                                                          tcpPort: [prefs objectForKey:PREFS_PORT]] retain];
     } else if ([[prefs objectForKey:PREFS_PROTOCOL] isEqualToString:@"tcps"]) {
+        [FMCDebugTool logInfo:@"setupProxy: tcps, ip:"];
+        [FMCDebugTool logInfo:[prefs objectForKey:PREFS_IPADDRESS]];
         proxy = [[FMCSyncProxyFactory buildSyncProxyWithListener: self
                                                     tcpIPAddress: [prefs objectForKey:PREFS_IPADDRESS]
                                                          tcpPort: [prefs objectForKey:PREFS_PORT]] retain];
-    } else
+    } else {
+        [FMCDebugTool logInfo:@"setupProxy: else"];
+        
         proxy = [[FMCSyncProxyFactory buildSyncProxyWithListener: self] retain];
+    }
     
     autoIncCorrID = 101;
 }
@@ -108,7 +117,7 @@
         [FMCDebugTool logInfo:@"HMI_FULL"];
         [self lockUserInterface];
         
-        FMCShow* showRequest = [FMCRPCRequestFactory buildShowWithMainField1:@"Hello" mainField2:@"AppLink!" alignment:[FMCTextAlignment CENTERED] correlationID:[NSNumber numberWithInt:autoIncCorrID++]];
+        FMCShow* showRequest = [FMCRPCRequestFactory buildShowWithMainField1:@"Let's listen to" mainField2:@"something cool!" alignment:[FMCTextAlignment CENTERED] correlationID:[NSNumber numberWithInt:autoIncCorrID++]];
         [proxy sendRPCRequest:showRequest];
         
     } else if (notification.hmiLevel == FMCHMILevel.HMI_BACKGROUND ) {
@@ -141,58 +150,58 @@
 
 -(void) lockUserInterface {
     [FMCDebugTool logInfo:@"lockUserInterface"];
-//    if (!isLocked) {
-//        [UIView beginAnimations:@"View Flip" context:nil];
-//        [UIView setAnimationDuration:1.25];
-//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//        
-//        if (self.lockScreenViewController == nil)
-//        {
-//            LockScreenViewController *lockScreenController = [[LockScreenViewController alloc] initWithNibName:@"LockScreenViewController" bundle:nil];
-//            self.lockScreenViewController = lockScreenController;
-//            [lockScreenController release];
-//        }
-//        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
-//        
-//        [mainScreenViewController viewWillAppear:YES];
-//        [lockScreenViewController viewWillDisappear:YES];
-//        
-//        [mainScreenViewController.view removeFromSuperview];
-//        [self.view insertSubview:lockScreenViewController.view atIndex:0];
-//        
-//        [lockScreenViewController viewDidDisappear:YES];
-//        [mainScreenViewController viewDidAppear:YES];
-//        [UIView commitAnimations];
-//    }
+    //    if (!isLocked) {
+    //        [UIView beginAnimations:@"View Flip" context:nil];
+    //        [UIView setAnimationDuration:1.25];
+    //        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    //
+    //        if (self.lockScreenViewController == nil)
+    //        {
+    //            LockScreenViewController *lockScreenController = [[LockScreenViewController alloc] initWithNibName:@"LockScreenViewController" bundle:nil];
+    //            self.lockScreenViewController = lockScreenController;
+    //            [lockScreenController release];
+    //        }
+    //        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+    //
+    //        [mainScreenViewController viewWillAppear:YES];
+    //        [lockScreenViewController viewWillDisappear:YES];
+    //
+    //        [mainScreenViewController.view removeFromSuperview];
+    //        [self.view insertSubview:lockScreenViewController.view atIndex:0];
+    //
+    //        [lockScreenViewController viewDidDisappear:YES];
+    //        [mainScreenViewController viewDidAppear:YES];
+    //        [UIView commitAnimations];
+    //    }
     isLocked = YES;
 }
 
 -(void) unlockUserInterface {
     [FMCDebugTool logInfo:@"unlockUserInterface"];
-//    if (isLocked) {
-//        [UIView beginAnimations:@"View Flip" context:nil];
-//        [UIView setAnimationDuration:1.25];
-//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//        
-//        if (self.mainScreenViewController == nil)
-//        {
-//            MainScreenViewController *mainScreenController = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
-//            self.mainScreenViewController = mainScreenController;
-//            [mainScreenController release];
-//        }
-//        
-//        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
-//        
-//        [lockScreenViewController viewWillAppear:YES];
-//        [mainScreenViewController viewWillDisappear:YES];
-//        
-//        [lockScreenViewController.view removeFromSuperview];
-//        [self.view insertSubview:mainScreenViewController.view atIndex:0];
-//        
-//        [mainScreenViewController viewDidDisappear:YES];
-//        [lockScreenViewController viewDidAppear:YES];
-//        [UIView commitAnimations];
-//    }
+    //    if (isLocked) {
+    //        [UIView beginAnimations:@"View Flip" context:nil];
+    //        [UIView setAnimationDuration:1.25];
+    //        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    //
+    //        if (self.mainScreenViewController == nil)
+    //        {
+    //            MainScreenViewController *mainScreenController = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
+    //            self.mainScreenViewController = mainScreenController;
+    //            [mainScreenController release];
+    //        }
+    //
+    //        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+    //
+    //        [lockScreenViewController viewWillAppear:YES];
+    //        [mainScreenViewController viewWillDisappear:YES];
+    //
+    //        [lockScreenViewController.view removeFromSuperview];
+    //        [self.view insertSubview:mainScreenViewController.view atIndex:0];
+    //
+    //        [mainScreenViewController viewDidDisappear:YES];
+    //        [lockScreenViewController viewDidAppear:YES];
+    //        [UIView commitAnimations];
+    //    }
     isLocked = NO;
 }
 
