@@ -48,40 +48,40 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.audio', {
+      url: '/audios',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-audios': {
+          templateUrl: 'templates/tab-audio.html',
+          controller: 'AudiosCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.audio-detail', {
+      url: '/audio/:audioId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-audios': {
+          templateUrl: 'templates/audio-detail.html',
+          controller: 'AudioDetailCtrl'
         }
       }
     })
 
-  .state('tab.friends', {
-      url: '/friends',
+  .state('tab.categories', {
+      url: '/categories',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+        'tab-categories': {
+          templateUrl: 'templates/tab-categories.html',
+          controller: 'CategoriesCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('tab.category-detail', {
+      url: '/category/:categoryId',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-categories': {
+          templateUrl: 'templates/category-detail.html',
+          controller: 'CategoryDetailCtrl'
         }
       }
     })

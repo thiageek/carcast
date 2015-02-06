@@ -1,15 +1,35 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-    <button class="button button-block button-stable"> Play </button>
-    <button class="button button-block button-stable"> Favorite this second </button>
-    <button class="button button-block button-stable"> Next audio </button>
-    <button class="button button-block button-stable"> Previous audio </button>
-    <button class="button button-block button-stable"> Rewind 15sec </button>
-    <button class="button button-block button-stable"> Forward 15sec </button>
-    <div class="range">
-      <i class="icon ion-volume-low"></i>
-      <input type="range" name="volume">
-      <i class="icon ion-volume-high"></i>
+    <div class="list-card">
+      <div class="item item-avatar row">
+        <div class="col">
+          <center>
+            <div class="button button-icon icon ion-headphone"></div>
+            <p>Podcast</p>
+          </center>
+        </div>
+        <div class="col col-75">
+          <h2>Nerdcast Empreendedor 01</h2>
+          <h3>O valor de uma ideia</h3>
+          <p>Jovem Nerd</p>
+        </div>
+      </div>
+      <div class="item item-image">
+        <img src="img/debug/jn.jpg">
+      </div>
+      <div class="item row">
+        <button class="col button icon ion-ios7-skipbackward"></button>
+        <button class="col button icon ion-ios7-rewind"></button>
+        <button class="col button icon ion-play"></button>
+        <button class="col button icon ion-star"></button>
+        <button class="col button icon ion-ios7-fastforward"></button>
+        <button class="col button icon ion-ios7-skipforward"></button>
+      </div>
+      <div class="range">
+        <i class="icon ion-volume-low"></i>
+        <input type="range" name="volume">
+        <i class="icon ion-volume-high"></i>
+      </div>
     </div>
   </ion-content>
 </ion-view>

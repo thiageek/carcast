@@ -1,0 +1,16 @@
+<ion-view view-title="Audios">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="audio in audios" type="item-text-wrap" href="#/tab/audios/{{audio.id}}">
+        <img ng-src="{{audio.face}}">
+        <h2>{{audio.name}}</h2>
+        <p>{{audio.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(audio)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
