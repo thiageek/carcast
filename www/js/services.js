@@ -1,10 +1,10 @@
-angular.module('starter.services', [])
+ angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Audios', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+  var audios = [{
     id: 0,
     name: 'Ben Sparrow',
     lastText: 'You on your way?',
@@ -33,15 +33,15 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return chats;
+      return audios;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    remove: function(audio) {
+      audios.splice(audios.indexOf(audio), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(audioId) {
+      for (var i = 0; i < audios.length; i++) {
+        if (audios[i].id === parseInt(audioId)) {
+          return audios[i];
         }
       }
       return null;
@@ -91,6 +91,39 @@ angular.module('starter.services', [])
     get: function(friendId) {
       // Simple index lookup
       return friends[friendId];
+    }
+  }
+})
+
+/**
+ * A simple example service that returns some data.
+ */
+.factory('Categories', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var categories = [{
+    id: 0,
+    name: 'All',
+    icon: 'ion-grid'
+  }, {
+    id: 1,
+    name: 'Podcasts',
+    icon: 'ion-headphone'
+  }, {
+    id: 2,
+    name: 'Audio Books',
+    icon: 'ion-android-book'
+  }];
+
+
+  return {
+    all: function() {
+      return categories;
+    },
+    get: function(categoryId) {
+      // Simple index lookup
+      return categories[categoryId];
     }
   }
 });
